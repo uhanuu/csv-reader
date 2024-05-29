@@ -1,9 +1,11 @@
 package attraction.run.newsletter;
 
+import java.util.stream.Stream;
 import lombok.Getter;
 
 @Getter
 public enum Category {
+  SKIP("기타"),
   TREND_LIFE("트렌드/라이프"),
   ENTERTAINMENT("엔터테이먼트"),
   BUSINESS_FINANCIAL_TECHNOLOGY("비즈/재테크"),
@@ -21,5 +23,16 @@ public enum Category {
 
   Category(String viewName) {
     this.viewName = viewName;
+  }
+
+  public static Category findDayByViewName(String viewName) {
+    return Stream.of(values())
+        .filter(day -> day.viewName.equals(viewName))
+        .findAny()
+        .orElse(SKIP);
+  }
+
+  public boolean isSkip() {
+    return this == SKIP;
   }
 }
