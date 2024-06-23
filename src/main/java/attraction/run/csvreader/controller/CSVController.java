@@ -5,6 +5,7 @@ import attraction.run.csvreader.CSVService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CSVController {
   private final CSVService csvService;
 
-  @GetMapping("/csv")
+  @PostMapping("/csv")
   public void read() {
     List<CSVProperties> csvProperties = csvService.getCSVProperties();
     csvService.saveNewsLetter(csvProperties);
