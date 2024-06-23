@@ -1,10 +1,8 @@
 package attraction.run.csvreader.controller;
 
 import attraction.run.csvreader.CSVProperties;
-import attraction.run.csvreader.CSVReader;
 import attraction.run.csvreader.CSVService;
 import java.util.List;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

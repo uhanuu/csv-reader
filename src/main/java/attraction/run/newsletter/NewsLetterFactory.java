@@ -7,6 +7,7 @@ public final class NewsLetterFactory {
   }
 
   public static Newsletter getInstance(CSVProperties properties) {
+
     return Newsletter.builder()
         .email(properties.getEmail())
         .name(properties.getName())
@@ -17,6 +18,8 @@ public final class NewsLetterFactory {
         .thumbnailUrl(properties.getThumbnailUrl())
         .uploadDays(properties.getUploadDays())
         .nickname(properties.getNickname())
+        .isAutoSubscribeEnabled(AutoSubscribeStatus.getStatus(properties.getIsAutoSubscribeEnabled()))
+        .hasConfirmationEmail(ConfirmationEmailStatus.getStatus(properties.getHasConfirmationEmail()))
         .build();
   }
 }

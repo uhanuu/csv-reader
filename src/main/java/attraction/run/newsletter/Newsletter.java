@@ -20,45 +20,59 @@ public class Newsletter extends BaseTimeEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(nullable = false, length = 100)
   private String email;
 
+  @Column(nullable = false, length = 30)
   private String name;
+
+  @Column(nullable = false)
   private String description;
+
+  @Column(nullable = false)
+  private String uploadDays;
+
   @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
   private Category category;
-  @Column(name = "main_link")
+
+  @Column(nullable = false)
   private String mainLink;
-  @Column(name = "subscribe_link")
+
+  @Column(nullable = false)
   private String subscribeLink;
-  private String nickname;
-  @Column(name = "thumbnail_url")
+
+  @Column(nullable = false)
   private String thumbnailUrl;
-  @Enumerated(EnumType.STRING)
-  @Column(name = "upload_days")
-  private UploadDays uploadDays;
-  @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1) default 0")
-  private boolean isDeleted;
+
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private boolean isAutoSubscribeEnabled = false;
+
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private boolean hasConfirmationEmail = false;
+
+  private String nickname;
+
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private boolean isDeleted = false;
 
   @Builder
-  private Newsletter(
-      String email,
-      String name,
-      String description,
-      Category category,
-      String mainLink,
-      String subscribeLink,
-      String thumbnailUrl,
-      UploadDays uploadDays,
-      String nickname
-  ) {
+  private Newsletter(Long id, String email, String name, String description, String uploadDays, Category category,
+                    String mainLink, String subscribeLink, String thumbnailUrl, boolean isAutoSubscribeEnabled,
+                    boolean hasConfirmationEmail, String nickname, boolean isDeleted) {
+    this.id = id;
     this.email = email;
     this.name = name;
     this.description = description;
+    this.uploadDays = uploadDays;
     this.category = category;
     this.mainLink = mainLink;
     this.subscribeLink = subscribeLink;
     this.thumbnailUrl = thumbnailUrl;
-    this.uploadDays = uploadDays;
+    this.isAutoSubscribeEnabled = isAutoSubscribeEnabled;
+    this.hasConfirmationEmail = hasConfirmationEmail;
     this.nickname = nickname;
+    this.isDeleted = isDeleted;
   }
 }
