@@ -20,6 +20,8 @@ public final class NewsLetterFactory {
         .nickname(properties.getNickname())
         .isAutoSubscribeEnabled(AutoSubscribeStatus.getStatus(properties.getIsAutoSubscribeEnabled()))
         .hasConfirmationEmail(ConfirmationEmailStatus.getStatus(properties.getHasConfirmationEmail()))
+        .isAgreePersonalInfoCollection(AgreePersonalInfoCollectionStatus.getStatus(properties.getIsAgreePersonalInfoCollection()))
+        .isAgreeAdInfoReception(AgreeAdInfoReceptionStatus.getStatus(properties.getIsAgreeAdInfoReception()))
         .build();
   }
 }

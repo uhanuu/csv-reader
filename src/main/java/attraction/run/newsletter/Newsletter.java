@@ -9,7 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -46,21 +48,41 @@ public class Newsletter extends BaseTimeEntity {
   @Column(nullable = false)
   private String thumbnailUrl;
 
+  @Column(nullable = false)
+  private String nickname;
+
   @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
   private boolean isAutoSubscribeEnabled = false;
 
   @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
   private boolean hasConfirmationEmail = false;
 
-  private String nickname;
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+  private boolean isAgreePersonalInfoCollection = true;
+
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private boolean isAgreeAdInfoReception = false;
+
 
   @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
   private boolean isDeleted = false;
 
   @Builder
-  private Newsletter(Long id, String email, String name, String description, String uploadDays, Category category,
-                    String mainLink, String subscribeLink, String thumbnailUrl, boolean isAutoSubscribeEnabled,
-                    boolean hasConfirmationEmail, String nickname, boolean isDeleted) {
+  private Newsletter(Long id,
+                    String email,
+                    String name,
+                    String description,
+                    String uploadDays,
+                    Category category,
+                    String mainLink,
+                    String subscribeLink,
+                    String thumbnailUrl,
+                    boolean isAutoSubscribeEnabled,
+                    boolean hasConfirmationEmail,
+                    boolean isAgreePersonalInfoCollection,
+                    boolean isAgreeAdInfoReception,
+                    String nickname,
+                    boolean isDeleted) {
     this.id = id;
     this.email = email;
     this.name = name;
@@ -72,6 +94,8 @@ public class Newsletter extends BaseTimeEntity {
     this.thumbnailUrl = thumbnailUrl;
     this.isAutoSubscribeEnabled = isAutoSubscribeEnabled;
     this.hasConfirmationEmail = hasConfirmationEmail;
+    this.isAgreePersonalInfoCollection = isAgreePersonalInfoCollection;
+    this.isAgreeAdInfoReception = isAgreeAdInfoReception;
     this.nickname = nickname;
     this.isDeleted = isDeleted;
   }
